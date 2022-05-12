@@ -1,8 +1,8 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        map<int, int> m;
-        vector<int> v;
+        std::map<int, int> m;
+        std::vector<int> v;
 
         int i = 0;
         for (int num : nums) {
