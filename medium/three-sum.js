@@ -68,6 +68,7 @@ var threeSum = function(nums) {
 */
 
 // The third submission -> 1520ms, 69.9MB
+/*
 var threeSum = function(nums) {
     let results = [];
 
@@ -99,6 +100,59 @@ var threeSum = function(nums) {
                 if (results.find(result => result[0] == r[0] && result[1] == r[1] && result[2] == r[2]) == null) {
                     results.push(r);
                 }
+            }
+        }
+    });
+
+    return results;
+};
+*/
+
+// The fourth submission -> 153ms, 53.4MB
+// REF: https://leetcode.com/problems/3sum/discuss/373909/JavaScript-with-clear-comments-beats-99
+var threeSum = function(nums) {
+    let results = [];
+
+    if (nums.length < 3) {
+        return results;
+    }
+
+    let j, k;
+    let sum;
+    
+    nums.sort((a, b) => a - b);
+
+    nums.forEach((num, i) => {
+        if (num > 0) {
+            return;
+        }
+
+        if (i > 0 && num == nums[i - 1]) {
+            return;
+        }
+
+        j = i + 1;
+        k = nums.length - 1;
+
+        while (j < k) {
+            sum = nums[i] + nums[j] + nums[k];
+
+            if (sum == 0) {
+                results.push([nums[i], nums[j], nums[k]]);
+                
+                // Skip duplicate numbers
+                while (nums[j] == nums[j + 1]) j++;
+                while (nums[k] == nums[k - 1]) k--;
+
+                // Next another numbers
+                j++;
+                k--;
+            } else if (sum < 0) {
+                // To increase sum
+                j++;
+            } else if (sum > 0) {
+                // To decrease sum
+                k--;
             }
         }
     });
