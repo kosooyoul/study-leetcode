@@ -2,7 +2,8 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-/* The first submission -> Wrong Answer ... threeSum([0, 0])
+// The first submission -> Wrong Answer ... threeSum([0, 0])
+/*
 var threeSum = function(nums) {
     let result = [];
     nums.forEach((num, idx) => {
@@ -35,6 +36,7 @@ var twoSum = function(nums, target, offset) {
 */
 
 // The second submission -> 10463ms, 81.6MB
+/*
 var threeSum = function(nums) {
     let results = [];
 
@@ -54,6 +56,46 @@ var threeSum = function(nums) {
             n = nums[i];
             if (t - n in v && v[t - n] != idx && v[t - n] != i) {
                 r = [-t, t - n, n].sort();
+                if (results.find(result => result[0] == r[0] && result[1] == r[1] && result[2] == r[2]) == null) {
+                    results.push(r);
+                }
+            }
+        }
+    });
+
+    return results;
+};
+*/
+
+// The third submission -> 1520ms, 69.9MB
+var threeSum = function(nums) {
+    let results = [];
+
+    let v = {};
+    let r;
+    let j;
+    let n;
+    
+    nums.sort();
+
+    nums.forEach((num, i) => {
+        v[num] = i;
+    });
+
+    nums.forEach((num, i) => {
+        if (num > 0) {
+            return;
+        }
+
+        if (i > 0 && num == nums[i - 1]) {
+            return;
+        }
+        
+        for(j = i + 1; j < nums.length; j++) {
+            n = -num - nums[j];
+            if (n in v && v[n] != i && v[n] != j) {
+                // TODO: How to check duplicate?
+                r = [num, n, nums[j]].sort();
                 if (results.find(result => result[0] == r[0] && result[1] == r[1] && result[2] == r[2]) == null) {
                     results.push(r);
                 }
