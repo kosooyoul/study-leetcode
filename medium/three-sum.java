@@ -31,11 +31,7 @@ class Solution {
                 sum = num + nums[j] + nums[k];
 
                 if (sum == 0) {
-                    List<Integer> list = new ArrayList<Integer>();
-                    list.add(num);
-                    list.add(nums[j]);
-                    list.add(nums[k]);
-                    results.add(list);
+                    results.add(Arrays.asList(num, nums[j], nums[k]));
 
                     while (j < len - 1 && nums[j] == nums[j + 1]) j++;
                     while (k > 1 && nums[k] == nums[k - 1]) k--;
