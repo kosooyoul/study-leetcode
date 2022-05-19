@@ -1,4 +1,4 @@
-// The first submission -> Error
+// The second submission -> 24ms, 58.3MB
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> results = new ArrayList<List<Integer>>();
@@ -37,8 +37,8 @@ class Solution {
                     list.add(nums[k]);
                     results.add(list);
 
-                    while (nums[j] == nums[j + 1]) j++;
-                    while (nums[k] == nums[k - 1]) k--;
+                    while (j < len - 1 && nums[j] == nums[j + 1]) j++;
+                    while (k > 1 && nums[k] == nums[k - 1]) k--;
 
                     j++;
                     k--;
