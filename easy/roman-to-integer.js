@@ -2,75 +2,24 @@
  * @param {string} s
  * @return {number}
  */
-// The first submission -> 224ms, 52.5MB
+// The third submission -> 192ms, 46.7MB
+var symbols = {
+    "I": 1,
+    "V": 5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
+};
+
 var romanToInt = function(s) {
-    var result = 0;
+    let result = 0;
+    let i;
+    const len = s.length;
     
-    var i = 0;
-    
-    while (s[i] === "M") {
-        result += 1000;
-        i++;
-    }
-
-    if (s[i] === "C" && s[i + 1] === "M") {
-        result += 900;
-        i += 2;
-    }
-    
-    while (s[i] === "D") {
-        result += 500;
-        i++;
-    }
-
-    if (s[i] === "C" && s[i + 1] === "D") {
-        result += 400;
-        i += 2;
-    }
-    
-    while (s[i] === "C") {
-        result += 100;
-        i++;
-    }
-    
-    if (s[i] === "X" && s[i + 1] === "C") {
-        result += 90;
-        i += 2;
-    }
-    
-    while (s[i] === "L") {
-        result += 50;
-        i++;
-    }
-
-    if (s[i] === "X" && s[i + 1] === "L") {
-        result += 40;
-        i += 2;
-    }
-    
-    while (s[i] === "X") {
-        result += 10;
-        i++;
-    }
-
-    if (s[i] === "I" && s[i + 1] === "X") {
-        result += 9;
-        i += 2;
-    }
-    
-    while (s[i] === "V") {
-        result += 5;
-        i++;
-    }
-
-    if (s[i] === "I" && s[i + 1] === "V") {
-        result += 4;
-        i += 2;
-    }
-
-    while (s[i] === "I") {
-        result += 1;
-        i++;
+    for (i = 0; i < len; i++) {
+        result += symbols[s[i]] < symbols[s[i + 1]]? -symbols[s[i]]: symbols[s[i]];
     }
 
     return result;
