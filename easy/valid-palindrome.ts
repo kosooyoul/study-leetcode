@@ -1,4 +1,5 @@
 // The first submission -> 127ms, 45.7mb
+/*
 function isPalindrome(s: string): boolean {
     let front = 0;
     let rear = s.length - 1;
@@ -15,6 +16,22 @@ function isPalindrome(s: string): boolean {
         
         front++;
         rear--;
+    };
+    
+    return true;
+};
+*/
+
+// The second submission -> 112ms, 45.0mb
+function isPalindrome(s: string): boolean {
+    const str = s.toLowerCase().replace(/[^a-z0-9]/g, "");
+    let front = 0;
+    let rear = str.length - 1;
+    
+    while (front < rear) {
+        if (str[front++] != str[rear--]) {
+            return false;
+        }
     };
     
     return true;
