@@ -25,6 +25,7 @@ function removeDuplicates(nums: number[]): number {
 */
 
 // The second submission -> 193ms, 48.7mb
+/*
 function removeDuplicates(nums: number[]): number {
     const used = {};
     let usedCount = 0;
@@ -42,6 +43,39 @@ function removeDuplicates(nums: number[]): number {
     }
     
     nums.sort((a, b) => a - b);
+    
+    return usedCount;
+};
+*/
+
+// The third submission -> 144 ms, 45.9mb
+function removeDuplicates(nums: number[]): number {
+    const used = {};
+    let usedCount = 0;
+    
+    const len = nums.length;
+    let p = 0;
+    while (p < len) {
+        if (used[nums[p]]) {
+            nums[p] = Infinity;
+        } else {
+            used[nums[p]] = true;
+            usedCount++;
+        }
+        p++;
+    }
+    
+    for (let i = 0; i < usedCount; i++) {
+        for (let j = i; j < len; j++) {
+            if (nums[j] != Infinity) {
+                if (nums[i] != nums[j]) {
+                    nums[i] = nums[j];
+                    nums[j] = Infinity;
+                }
+                break;
+            }
+        }
+    }
     
     return usedCount;
 };
